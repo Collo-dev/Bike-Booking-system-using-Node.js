@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/admin.css">
+  <title>Admin Dashboard</title>
+</head>
+<body>
+  <header>
+    <h1 class="logo">TwoWheelTrips</h1>
+    <nav class="navigation">
+        <a href="/" class="login-page">Home</a>
+        <a href="/contact" class="contacts-page">Contact Us</a>
+        <a href="/about" class="contacts-page">About Us</a>
+        <a href="/Bikes" class="contacts-page">Bikes and Rides</a>
+    </nav>
+</header>
+
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <form id="routeForm" action="/admin/add-route" method="post">
+      <label for="origin">Origin:</label>
+      <input type="text" id="origin" name="origin" required>
+
+      <label for="destination">Destination:</label>
+      <input type="text" id="destination" name="destination" required>
+
+      <label for="fare">Fare:</label>
+      <input type="number" id="fare" name="fare" required>
+
+      <button type="submit">Add Route</button>
+    </form>
+
+    <ul id="routesList">
+      <% routes.forEach(route => { %>
+        <li>
+          <div>
+            <p>Origin: <%= route.origin %></p>
+            <p>Destination: <%= route.destination %></p>
+            <p>Fare: <%= route.fare %></p>
+          </div>
+          <button onclick="deleteRoute('<%= route._id %>')">Delete</button>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <script>
+    async function deleteRoute(routeId) {
+      try {
+        const response = await fetch(`/admin/delete-route/${routeId}`, {
+          method: 'DELETE',
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          alert('Route deleted successfully');
+          // Reload the admin page to reflect changes
+          window.location.reload();
+        } else {
+          alert('Error deleting route');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Internal Server Error');
+      }
+    }
+  </script>
+</body>
+</html>

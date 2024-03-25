@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <link rel="stylesheet" href="/booking.css">
+</head>
+<body>
+    <header>
+        <!-- Header content -->
+    </header>
+    <h1>Booking Page</h1>
+    <form id="bookingForm">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" value="<%= fare %>" readonly required>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required>
+        <button type="button" onclick="submitBooking()">Pay Now</button>
+    </form>
+
+    <script>
+        function submitBooking() {
+            const amount = document.getElementById('amount').value;
+            const phone = document.getElementById('phone').value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/stk', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert('Payment request sent successfully!');
+                    setTimeout(sendEmail, 25000); // Wait for 25 seconds before sending email
+                }
+            };
+
+            xhr.send(JSON.stringify({ amount, phone }));
+        }
+
+        function sendEmail() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/send-email', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert('Email sent successfully!');
+                }
+            };
+
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
