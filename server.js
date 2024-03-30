@@ -15,6 +15,8 @@ const userRouter = require('./Routes/auth.js')
 const bookingRouter = require('./Routes/booking.js')
 const routsRouter = require('./Routes/routes.js')
 const contactRouter = require('./Routes/contacts.js')
+const bikeShowcaseRouter = require('./Routes/bike_showcase');
+
 
 const app = express();
 
@@ -51,6 +53,7 @@ app.use('/', userRouter);
 app.use('/', bookingRouter)
 app.use('/', routsRouter)
 app.use('/', contactRouter)
+app.use('/', bikeShowcaseRouter)
 
 // Rendering 404 page for mispath
 app.use((req, res) => {

@@ -4,24 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom stylesheet -->
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header>
-        <h1 class="logo">TwoWheelTrips</h1>
-        <nav class="navigation">
-            <a href="/login" class="login-page">Login</a>
-            <a href="/contact" class="contacts-page">Contact Us</a>
-            <a href="/about" class="contacts-page">About Us</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="https://via.placeholder.com/150" width="30" height="30" class="d-inline-block align-top" alt="">
+                TwoWheelTrips
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
-    <div class="container">
-        <h1>Welcome to our Bike Booking System</h1>
-        <p>Explore our wide range of bikes and plan your next adventure!</p>
-        
+
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to our Bike Booking System</h1>
+            <p class="lead">Explore our wide range of bikes and plan your next adventure!</p>
+        </div>
     </div>
-    <footer>
-        <p>&copy; 2024 UrbanExpress. All rights reserved.</p>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <p>&copy; 2024 UrbanExpress. All rights reserved.</p>
+        </div>
     </footer>
+
+    <!-- Bootstrap JS (optional, only if you need Bootstrap's JavaScript features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

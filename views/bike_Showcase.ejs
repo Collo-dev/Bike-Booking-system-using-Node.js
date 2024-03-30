@@ -1,0 +1,42 @@
+<!-- bike_showcase.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bike Showcase</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Your custom CSS file -->
+  <link href="/styles/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-5">Bike Showcase</h1>
+    <div class="row">
+      <% bikes.forEach(bike => { %>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <img src="<%= bike.imageUrl %>" class="card-img-top" alt="Bike Image">
+            <div class="card-body">
+              <h5 class="card-title"><%= bike.name %></h5>
+              <p class="card-text">Type: <%= bike.type %></p>
+              <p class="card-text">Price: $<%= bike.price %></p>
+              <% if (bike.available) { %>
+                <form action="/book_bike/<%= bike._id %>" method="POST">
+                  <button type="submit" class="btn btn-primary">Book Now</button>
+                </form>
+              <% } else { %>
+                <p class="text-danger">This bike is currently unavailable.</p>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (Optional) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
