@@ -1,0 +1,71 @@
+<!-- bike_Showcase.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Showcase</title>
+    <!-- Add any necessary CSS files or stylesheets -->
+    <style>
+        .bike-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .bike-card img {
+            max-width: 200px;
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+        .selected {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bike Showcase</h1>
+
+    <!-- Display existing bikes -->
+    <h2>Available Bikes</h2>
+    <div id="bikeContainer">
+        <% bikes.forEach(bike => { %>
+            <div class="bike-card" id="bike_<%= bike._id %>">
+                <img src="<%= bike.image %>" alt="Bike Image">
+                <h3><%= bike.name %></h3>
+                <p>Type: <%= bike.type %></p>
+                <p>Original Destination: <%= bike.destination %></p>
+                <button onclick="selectBike('<%= bike._id %>')">Select Bike</button>
+            </div>
+        <% }); %>
+    </div>
+
+    <!-- Selected Bikes -->
+    <h2>Selected Bikes</h2>
+    <div id="selectedBikes">
+        <!-- Selected bikes will appear here -->
+    </div>
+
+    <script>
+        // Function to select a bike
+        function selectBike(bikeId) {
+            const bikeDiv = document.getElementById('bike_' + bikeId);
+            bikeDiv.classList.toggle('selected');
+
+            // Check if the bike is selected or deselected
+            if (bikeDiv.classList.contains('selected')) {
+                // If selected, add to selected bikes list
+                const selectedBikes = document.getElementById('selectedBikes');
+                const selectedBikeDiv = document.createElement('div');
+                selectedBikeDiv.textContent = bikeDiv.querySelector('h3').textContent;
+                selectedBikes.appendChild(selectedBikeDiv);
+            } else {
+                // If deselected, remove from selected bikes list
+                const selectedBikes = document.getElementById('selectedBikes');
+                const selectedBikeDiv = document.querySelector('#selectedBikes > div');
+                selectedBikes.removeChild(selectedBikeDiv);
+            }
+        }
+    </script>
+</body>
+</html>

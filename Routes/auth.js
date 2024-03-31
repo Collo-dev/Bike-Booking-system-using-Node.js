@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
   // Confirmation of user login
   router.post('/login',
 passport.authenticate('local', {
-  successRedirect: '/bike_Showcase',
+  successRedirect: '/Bikes',
   failureRedirect: '/register',
   failureFlash: true
 })

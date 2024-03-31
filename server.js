@@ -15,7 +15,7 @@ const userRouter = require('./Routes/auth.js')
 const bookingRouter = require('./Routes/booking.js')
 const routsRouter = require('./Routes/routes.js')
 const contactRouter = require('./Routes/contacts.js')
-const bikeShowcaseRouter = require('./Routes/bike_showcase');
+const bikeShowcaseRouter = require('./Routes/bike_Showcase');
 
 
 const app = express();
